@@ -1,8 +1,9 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 import sys
+from modal_const import CACHE_PATH
 
-tokenizer = AutoTokenizer.from_pretrained("./bert/bert-base-japanese-v3")
+tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/bert-base-japanese-v3")
 
 models = dict()
 
@@ -18,7 +19,7 @@ def get_bert_feature(text, word2ph, device=None):
         device = "cuda"
     if device not in models.keys():
         models[device] = AutoModelForMaskedLM.from_pretrained(
-            "./bert/bert-base-japanese-v3"
+            CACHE_PATH + "/bert/bert-base-japanese-v3"
         ).to(device)
     with torch.no_grad():
         inputs = tokenizer(text, return_tensors="pt")

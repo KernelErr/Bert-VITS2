@@ -5,6 +5,8 @@ import unicodedata
 
 from transformers import AutoTokenizer
 
+from modal_const import CACHE_PATH
+
 from . import punctuation, symbols
 
 try:
@@ -542,7 +544,7 @@ def distribute_phone(n_phone, n_word):
     return phones_per_word
 
 
-tokenizer = AutoTokenizer.from_pretrained("./bert/bert-base-japanese-v3")
+tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/bert-base-japanese-v3")
 
 
 def g2p(norm_text):
@@ -574,7 +576,7 @@ def g2p(norm_text):
 
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained("./bert/bert-base-japanese-v3")
+    tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/bert-base-japanese-v3")
     text = "hello,こんにちは、世界！……"
     from text.japanese_bert import get_bert_feature
 

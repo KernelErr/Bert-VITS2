@@ -1,5 +1,7 @@
 from .symbols import *
 
+from modal_const import CACHE_PATH
+
 _symbol_to_id = {s: i for i, s in enumerate(symbols)}
 
 
@@ -43,7 +45,7 @@ def check_bert_models():
         kwargs = {"token": config.openi_token} if config.openi_token else {}
         openi.login(**kwargs)
 
-    with open("./bert/bert_models.json", "r") as fp:
+    with open(CACHE_PATH + "/bert/bert_models.json", "r") as fp:
         models = json.load(fp)
         for k, v in models.items():
             local_path = Path("./bert").joinpath(k)

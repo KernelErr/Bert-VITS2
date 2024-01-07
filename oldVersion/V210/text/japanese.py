@@ -12,6 +12,8 @@ from num2words import num2words
 import pyopenjtalk
 import jaconv
 
+from modal_const import CACHE_PATH
+
 
 def kata2phoneme(text: str) -> str:
     """Convert katakana text to phonemes."""
@@ -342,7 +344,7 @@ def handle_long(sep_phonemes):
     return sep_phonemes
 
 
-tokenizer = AutoTokenizer.from_pretrained("./bert/deberta-v2-large-japanese-char-wwm")
+tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/deberta-v2-large-japanese-char-wwm")
 
 
 def align_tones(phones, tones):
@@ -419,7 +421,7 @@ def g2p(norm_text):
 
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained("./bert/deberta-v2-large-japanese")
+    tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/deberta-v2-large-japanese-char-wwm")
     text = "hello,こんにちは、世界ー！……"
     from text.japanese_bert import get_bert_feature
 

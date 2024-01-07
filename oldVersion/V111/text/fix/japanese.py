@@ -5,6 +5,8 @@ import unicodedata
 
 from transformers import AutoTokenizer
 
+from modal_const import CACHE_PATH
+
 from .. import punctuation, symbols
 
 from num2words import num2words
@@ -308,7 +310,7 @@ def handle_long(sep_phonemes):
     return sep_phonemes
 
 
-tokenizer = AutoTokenizer.from_pretrained("./bert/bert-base-japanese-v3")
+tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/bert-base-japanese-v3")
 
 
 def g2p(norm_text):
@@ -334,7 +336,7 @@ def g2p(norm_text):
 
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained("./bert/bert-base-japanese-v3")
+    tokenizer = AutoTokenizer.from_pretrained(CACHE_PATH + "/bert/bert-base-japanese-v3")
     text = "hello,こんにちは、世界ー！……"
     from text.japanese_bert import get_bert_feature
 

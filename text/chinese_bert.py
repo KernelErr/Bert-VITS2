@@ -5,7 +5,9 @@ from transformers import AutoModelForMaskedLM, AutoTokenizer
 
 from config import config
 
-LOCAL_PATH = "./bert/chinese-roberta-wwm-ext-large"
+from modal_const import CACHE_PATH
+
+LOCAL_PATH = CACHE_PATH + "/bert/chinese-roberta-wwm-ext-large"
 
 tokenizer = AutoTokenizer.from_pretrained(LOCAL_PATH)
 

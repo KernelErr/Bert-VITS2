@@ -7,6 +7,7 @@ from typing import Dict, List
 import os
 import shutil
 import sys
+from modal_const import CACHE_PATH
 
 
 class Resample_config:
@@ -241,8 +242,4 @@ class Config:
             )
 
 
-parser = argparse.ArgumentParser()
-# 为避免与以前的config.json起冲突，将其更名如下
-parser.add_argument("-y", "--yml_config", type=str, default="config.yml")
-args, _ = parser.parse_known_args()
-config = Config(args.yml_config)
+config = Config(CACHE_PATH + "/config.yml")
